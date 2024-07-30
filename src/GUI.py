@@ -1,8 +1,39 @@
 from tkinter import Tk, BOTH, Canvas
+#from Cell import Cell
 # from GUI import (
 #     Line,
 #     Point
 # )
+class Cell:
+
+    def __init__(self, x1: int, y1: int, x2: int, y2: int) -> None:
+        self.has_left_wall = True
+        self.has_right_wall = True
+        self.has_top_wall = True
+        self.has_bottom_wall = True
+        self.__x1 = x1
+        self.__y1 = y1
+        self.__x2 = x2
+        self.__y2 = y2
+        #self.__win = win
+
+    def draw(self, canvas: Canvas, color: str) -> None:
+        top_left = Point(self.__x1, self.__y1)
+        bottom_left = Point(self.__x1, self.__y2)
+        top_right = Point(self.__x2, self.__y1)
+        bottom_right = Point(self.__x2, self.__y2)
+        if self.has_left_wall:
+            l = Line(top_left, bottom_left)
+            l.draw(canvas, color)
+        if self.has_right_wall:
+            l = Line(top_right, bottom_right)
+            l.draw(canvas, color)
+        if self.has_top_wall:
+            l = Line(top_right, top_left)
+            l.draw(canvas, color)
+        if self.has_bottom_wall:
+            l = Line(bottom_right, bottom_left)
+            l.draw(canvas, color)
 
 class Point:
 
@@ -48,5 +79,8 @@ class Window:
 
     def draw_line(self, line: Line, color: str) -> None:
         line.draw(self.__canvas, color)
+
+    def draw_cell(self, cell: Cell, color: str) -> None:
+        cell.draw(self.__canvas, color)
 
 
