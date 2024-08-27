@@ -15,6 +15,8 @@ class Cell:
         self.__y1 = y1
         self.__x2 = x2
         self.__y2 = y2
+        self.center_x = (x2 + x1)/2
+        self.center_y = (y2 + y1)/2
         #self.__win = win
 
     def draw(self, canvas: Canvas, color: str) -> None:
@@ -34,6 +36,17 @@ class Cell:
         if self.has_bottom_wall:
             l = Line(bottom_right, bottom_left)
             l.draw(canvas, color)
+    
+    def draw_move(self, canvas: Canvas, to_cell, undo) -> None:
+        p1 = Point(self.center_x, self.center_y)
+        p2 = Point(to_cell.center_x, to_cell.center_y)
+        l = Line(p1, p2)
+        if undo:
+            l.draw(canvas, "red")
+        else:
+            l.draw(canvas, "gray")
+            # print(self.center_x , " ," , self.center_y)
+            # print(to_cell.center_x , " ," , to_cell.center_y)
 
 class Point:
 
@@ -82,5 +95,8 @@ class Window:
 
     def draw_cell(self, cell: Cell, color: str) -> None:
         cell.draw(self.__canvas, color)
+
+    def draw_move(self, cell: Cell, to_cell: Cell, undo=False ):
+        cell.draw_move(self.__canvas, to_cell, undo)    
 
 
