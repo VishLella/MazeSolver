@@ -13,6 +13,7 @@ def main() -> None:
     win = Window(800, 800)
     game = maze(0, 0, 16, 16, 50, 50, win)
 
+    game.draw_cell(0, 0)
 
     # p1 = Point(0, 0)
     # p2 = Point(50, 50)

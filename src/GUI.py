@@ -24,6 +24,15 @@ class Cell:
         bottom_left = Point(self.__x1, self.__y2)
         top_right = Point(self.__x2, self.__y1)
         bottom_right = Point(self.__x2, self.__y2)
+        #reset cell area
+        l = Line(top_left, bottom_left)
+        l.draw(canvas, "white")
+        l = Line(top_right, bottom_right)
+        l.draw(canvas, "white")
+        l = Line(top_right, top_left)
+        l.draw(canvas, "white")
+        l = Line(bottom_right, bottom_left)
+        l.draw(canvas, "white")
         if self.has_left_wall:
             l = Line(top_left, bottom_left)
             l.draw(canvas, color)

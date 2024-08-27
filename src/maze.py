@@ -41,14 +41,18 @@ class maze:
             cells.append(cell_row)
 
         print("Done!")
-        
+        return cells        
         # for i in range(len(cells)):
         #     for j in range(len(cells[i])):
         #         self.__draw_cell(cells[i][j], i, j)
 
-    # def __draw_cell(self, i, j):
-
-    #     return
+    def draw_cell(self, i, j):
+        #print(self.cells)
+        self.cells[i][j].has_right_wall = False
+        self.cells[i][j+1].has_left_wall = False
+        self.win.draw_cell(self.cells[i][j], "blue")
+        self.win.draw_cell(self.cells[i][j+1], "blue")
+        self.animate()
 
     def animate(self):
         self.win.redraw()
