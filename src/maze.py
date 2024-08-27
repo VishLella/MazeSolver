@@ -26,6 +26,7 @@ class maze:
         self.win = win
 
         self.cells = self.create_cells()
+        self.break_entrance_and_exit()
 
     def create_cells(self):
         cells = []
@@ -46,17 +47,24 @@ class maze:
         #     for j in range(len(cells[i])):
         #         self.__draw_cell(cells[i][j], i, j)
 
-    def draw_cell(self, i, j):
+    def break_entrance_and_exit(self):
+        entrance_cell = self.cells[0][0]
+        exit_cell = self.cells[self.num_rows - 1][self.num_cols - 1]
+
+        entrance_cell.has_top_wall = False
+        exit_cell.has_bottom_wall = False
+
+        self.draw_cell(0, 0)
+        self.draw_cell(self.num_rows - 1, self.num_cols - 1)
+
+    def draw_cell(self, i, j): 
         #print(self.cells)
-        self.cells[i][j].has_right_wall = False
-        self.cells[i][j+1].has_left_wall = False
-        self.win.draw_cell(self.cells[i][j], "blue")
-        self.win.draw_cell(self.cells[i][j+1], "blue")
+        self.win.draw_cell(self.cells[i][j], "black")
         self.animate()
 
     def animate(self):
         self.win.redraw()
-        time.sleep(0.05)
-
+        time.sleep(0.02)
+    
 
 
