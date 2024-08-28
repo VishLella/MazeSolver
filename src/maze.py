@@ -48,6 +48,8 @@ class maze:
         #         self.__draw_cell(cells[i][j], i, j)
 
     def break_entrance_and_exit(self):
+        print(len(self.cells))
+        print(len(self.cells[0]))
         entrance_cell = self.cells[0][0]
         exit_cell = self.cells[self.num_rows - 1][self.num_cols - 1]
 
