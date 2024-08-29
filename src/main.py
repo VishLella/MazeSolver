@@ -13,6 +13,8 @@ def main() -> None:
     win = Window(820, 820)
     game = maze(10, 10, 16, 16, 50, 50, win)
 
+    #recursively generate maze
+
     # num_rows = 16
     # num_cols = 16
     # m1 = maze(0, 0, num_rows, num_cols, 10, 10, win)
