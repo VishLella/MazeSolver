@@ -11,7 +11,7 @@ import random
 
 def main() -> None:
     win = Window(820, 820)
-    game = maze(10, 10, 16, 16, 50, 50, win)
+    game = maze(10, 10, 16, 16, 50, 50, win, 0)
 
     #recursively generate maze
 

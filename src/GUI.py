@@ -17,6 +17,7 @@ class Cell:
         self.__y2 = y2
         self.center_x = (x2 + x1)/2
         self.center_y = (y2 + y1)/2
+        self.visited = False
         #self.__win = win
 
     def draw(self, canvas: Canvas, color: str) -> None:
