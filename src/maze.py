@@ -68,7 +68,8 @@ class maze:
 
     def break_walls_r(self, i, j):
         self.cells[i][j].visited = True
-        cell = self.cells[i][j]
+        #cell = self.cells[i][j]
+        print(i, " ", j)
 
         while True:
             toVisit = []
@@ -78,14 +79,14 @@ class maze:
                     toVisit.append((i - 1, j, "top"))
             #lower cell
             if i + 1 <= len(self.cells) - 1:
-                if self.cells[i - 1][j].visited != True:
-                    toVisit.append((i - 1, j, "bot"))
+                if self.cells[i + 1][j].visited != True:
+                    toVisit.append((i + 1, j, "bot"))
             #left cell
             if j - 1 >= 0:
                 if self.cells[i][j - 1].visited != True:
                     toVisit.append((i, j - 1, "left"))
             #right cell
-            if j + 1 <= len(self.cells[0]):
+            if j + 1 <= len(self.cells[0]) - 1:
                 if self.cells[i][j + 1].visited != True:
                     toVisit.append((i, j + 1, "right"))
 
@@ -94,6 +95,8 @@ class maze:
                 return
             
             num = random.randint(0, len(toVisit) - 1)
+            print(toVisit)
+            print("picked: ", toVisit[num])
             if toVisit[num][2] == "top":
                 self.cells[i][j].has_top_wall = False
                 self.cells[i - 1][j].has_bottom_wall = False
@@ -117,7 +120,7 @@ class maze:
                 self.break_walls_r(i, j - 1)
             elif toVisit[num][2] == "right":
                 self.cells[i][j].has_right_wall = False
-                self.cells[i][j + 1].has_leftm_wall = False
+                self.cells[i][j + 1].has_left_wall = False
                 self.draw_cell(i, j)
                 self.draw_cell(i, j + 1)
                 toVisit.pop(num)
